@@ -6,6 +6,7 @@
   "description": "Interactive, module-wise ER diagram viewer for the HMS EF Core database schema",
   "scripts": {
     "extract": "node scripts/extract-schema.mjs",
+    "sync": "node scripts/sync.mjs",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

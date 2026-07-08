@@ -24,16 +24,32 @@ npm run extract   # regenerate src/schema.json from the EF snapshot (see below)
 npm run dev       # open http://localhost:5290
 ```
 
-## Regenerating the schema
+## Keeping it in sync (after a new migration)
 
-The data comes from the HMS EF Core model snapshot. Re-run the extractor whenever the
-schema changes (after a new migration):
+You **never edit `schema.json` by hand** — it is generated from the HMS EF Core model
+snapshot. Whenever the database schema changes, run one command:
 
 ```bash
-node scripts/extract-schema.mjs "path/to/ApplicationDbContextModelSnapshot.cs"
+npm run sync
 ```
 
-The default path is set inside `scripts/extract-schema.mjs`.
+That regenerates `src/schema.json` from the snapshot and, if anything changed, commits
+and pushes it — Vercel then redeploys automatically. If nothing changed it just says so.
+
+To only regenerate the JSON without committing:
+
+```bash
+npm run extract
+```
+
+The snapshot location is resolved in this order:
+
+1. CLI arg — `node scripts/extract-schema.mjs "C:\path\to\ApplicationDbContextModelSnapshot.cs"`
+2. Env var — `HMS_SNAPSHOT=... npm run extract`
+3. The default path baked into `scripts/extract-schema.mjs`
+
+If the snapshot file isn't found, the extractor keeps the existing `schema.json` instead
+of failing (so cloud builds that only have this repo still work).
 
 ## Stack
 

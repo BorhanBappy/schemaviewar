@@ -8,17 +8,29 @@
 //
 // Re-run whenever the schema changes (after a new migration) to regenerate the JSON.
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
+// Snapshot location, in priority order:
+//   1. CLI arg:   node scripts/extract-schema.mjs "C:\path\to\snapshot.cs"
+//   2. Env var:   HMS_SNAPSHOT=... npm run extract
+//   3. Default below (the author's local HMS checkout)
 const DEFAULT_SNAPSHOT =
   'd:/Encoders/HMS/HMS.Repository/Migrations/ApplicationDbContextModelSnapshot.cs'
 
-const snapshotPath = process.argv[2] || DEFAULT_SNAPSHOT
+const snapshotPath = process.argv[2] || process.env.HMS_SNAPSHOT || DEFAULT_SNAPSHOT
 const outPath = resolve(__dirname, '../src/schema.json')
+
+// Not fatal if the snapshot is absent (e.g. on a CI/Vercel build machine that only
+// has this repo) — keep the committed schema.json instead of crashing the build.
+if (!existsSync(snapshotPath)) {
+  console.warn(`⚠ Snapshot not found at: ${snapshotPath}`)
+  console.warn('  Keeping the existing src/schema.json. Pass a path or set HMS_SNAPSHOT to regenerate.')
+  process.exit(0)
+}
 
 const src = readFileSync(snapshotPath, 'utf8')
 
