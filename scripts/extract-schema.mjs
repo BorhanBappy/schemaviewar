@@ -150,6 +150,22 @@ for (const ent of entities.values()) {
   }
 }
 
+// ---- Reclassify RBAC out of SYSTEM -------------------------------------------
+// RBAC entities live in HMS.Entities (not under Areas), so they default to SYSTEM.
+// They all share the rbac_ table prefix — carve them into their own RBAC module.
+for (const ent of entities.values()) {
+  if (ent.module === 'SYSTEM' && ent.table && ent.table.startsWith('rbac_')) {
+    ent.module = 'RBAC'
+  }
+}
+// Now that modules are final, fix each relation's target module.
+const moduleByFull = new Map([...entities.values()].map((e) => [e.fullName, e.module]))
+for (const ent of entities.values()) {
+  for (const rel of ent.relations) {
+    rel.toModule = moduleByFull.get(rel.toFull) || moduleOf(rel.toFull)
+  }
+}
+
 // ---- Build output ------------------------------------------------------------
 const moduleCounts = new Map()
 const tables = []

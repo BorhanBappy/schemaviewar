@@ -15,6 +15,7 @@ const MODULE_COLORS = {
   ROUTING: '#0891B2',
   SCM: '#B45309',
   WBM: '#059669',
+  RBAC: '#6366F1',
   SYSTEM: '#6B7280',
 }
 
