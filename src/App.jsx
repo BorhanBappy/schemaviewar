@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, useCallback } from 'react'
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -20,7 +21,6 @@ import DetailPanel from './components/DetailPanel'
 
 const nodeTypes = { table: TableNode }
 
-// Pick a sensible starting module (PAMS if present, else first).
 const DEFAULT_MODULE =
   schema.modules.find((m) => m.name === 'PAMS')?.name || schema.modules[0]?.name || 'ALL'
 
@@ -29,15 +29,19 @@ function FlowCanvas({ graph, selectedTableFull, onSelectTable }) {
   const [nodes, setNodes, onNodesChange] = useNodesState([])
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
 
-  // Reset graph whenever the module / related toggle changes.
+  // Reset graph when the module / related toggle changes. Fit the whole view
+  // unless a specific table is targeted (the selection effect handles that).
   useEffect(() => {
     setNodes(graph.nodes)
     setEdges(graph.edges)
-    const raf = requestAnimationFrame(() => rf.fitView({ duration: 400, padding: 0.18 }))
-    return () => cancelAnimationFrame(raf)
-  }, [graph, setNodes, setEdges, rf])
+    if (!selectedTableFull) {
+      const raf = requestAnimationFrame(() => rf.fitView({ duration: 400, padding: 0.18 }))
+      return () => cancelAnimationFrame(raf)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [graph])
 
-  // Reflect the selected table (from click or search) onto node highlight + camera.
+  // Highlight + centre the selected table (from a click, search or shared URL).
   useEffect(() => {
     setNodes((nds) => nds.map((n) => ({ ...n, selected: n.id === selectedTableFull })))
     if (selectedTableFull && graph.nodes.some((n) => n.id === selectedTableFull)) {
@@ -74,18 +78,34 @@ function FlowCanvas({ graph, selectedTableFull, onSelectTable }) {
 }
 
 export default function App() {
-  const [selectedModule, setSelectedModule] = useState(DEFAULT_MODULE)
-  const [showRelated, setShowRelated] = useState(true)
+  const { module: routeModule } = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
+
+  const selectedModule = routeModule || DEFAULT_MODULE
+  const showRelated = searchParams.get('related') !== '0'
+  const tParam = searchParams.get('t')
+
   const [search, setSearch] = useState('')
-  const [selectedTableFull, setSelectedTableFull] = useState(null)
+  const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  const byFull = useMemo(() => new Map(schema.tables.map((t) => [t.fullName, t])), [])
+
+  // Resolve ?t=<shortName> to a full entity name — prefer the current module,
+  // then fall back to a global match (for related tables from other modules).
+  const selectedTableFull = useMemo(() => {
+    if (!tParam) return null
+    const inModule = schema.tables.find((t) => t.name === tParam && t.module === selectedModule)
+    if (inModule) return inModule.fullName
+    const anywhere = schema.tables.find((t) => t.name === tParam)
+    return anywhere ? anywhere.fullName : null
+  }, [tParam, selectedModule])
+  const selectedTable = selectedTableFull ? byFull.get(selectedTableFull) : null
 
   const graph = useMemo(
     () => buildGraph(schema, selectedModule, showRelated),
     [selectedModule, showRelated]
   )
-
-  const byFull = useMemo(() => new Map(schema.tables.map((t) => [t.fullName, t])), [])
-  const selectedTable = selectedTableFull ? byFull.get(selectedTableFull) : null
 
   const searchResults = useMemo(() => {
     const q = search.trim().toLowerCase()
@@ -95,39 +115,79 @@ export default function App() {
       .slice(0, 40)
   }, [search])
 
-  const pickTable = useCallback((t) => {
-    // Jump to the module that owns the table so it becomes visible, then select it.
-    setSelectedModule(t.module)
-    setSelectedTableFull(t.fullName)
-    setSearch('')
-  }, [])
+  // ---- URL navigation helpers ----
+  const urlFor = useCallback(
+    (module, tName, related) => {
+      const qs = new URLSearchParams()
+      if (tName) qs.set('t', tName)
+      if (!related) qs.set('related', '0')
+      const s = qs.toString()
+      return `/m/${module}${s ? `?${s}` : ''}`
+    },
+    []
+  )
 
-  // Jump from a relation link inside the detail panel.
-  const jumpTo = useCallback(
+  const selectModule = useCallback(
+    (m) => navigate(urlFor(m, null, showRelated)),
+    [navigate, urlFor, showRelated]
+  )
+  const toggleRelated = useCallback(
+    () => navigate(urlFor(selectedModule, tParam, !showRelated)),
+    [navigate, urlFor, selectedModule, tParam, showRelated]
+  )
+  // Click a node in the current view: open its detail, keep the module scope.
+  const selectTableInView = useCallback(
     (fullName) => {
       const t = byFull.get(fullName)
-      if (t) pickTable(t)
+      if (t) navigate(urlFor(selectedModule, t.name, showRelated))
     },
-    [byFull, pickTable]
+    [byFull, navigate, urlFor, selectedModule, showRelated]
+  )
+  // Pick from search / jump from a relation link: switch to the table's own module.
+  const jumpToTable = useCallback(
+    (t) => {
+      navigate(urlFor(t.module, t.name, showRelated))
+      setSearch('')
+    },
+    [navigate, urlFor, showRelated]
+  )
+  const jumpToFull = useCallback(
+    (fullName) => {
+      const t = byFull.get(fullName)
+      if (t) jumpToTable(t)
+    },
+    [byFull, jumpToTable]
+  )
+  const closeDetail = useCallback(
+    () => navigate(urlFor(selectedModule, null, showRelated)),
+    [navigate, urlFor, selectedModule, showRelated]
   )
 
   return (
-    <div className="app">
-      <Sidebar
-        schema={schema}
-        selectedModule={selectedModule}
-        onSelectModule={(m) => {
-          setSelectedModule(m)
-          setSelectedTableFull(null)
-        }}
-        showRelated={showRelated}
-        onToggleRelated={() => setShowRelated((v) => !v)}
-        search={search}
-        onSearch={setSearch}
-        searchResults={searchResults}
-        onPickTable={pickTable}
-        stats={graph.stats}
-      />
+    <div className={`app${sidebarOpen ? '' : ' app--nosidebar'}`}>
+      {sidebarOpen ? (
+        <Sidebar
+          schema={schema}
+          selectedModule={selectedModule}
+          onSelectModule={selectModule}
+          showRelated={showRelated}
+          onToggleRelated={toggleRelated}
+          search={search}
+          onSearch={setSearch}
+          searchResults={searchResults}
+          onPickTable={jumpToTable}
+          stats={graph.stats}
+          onCollapse={() => setSidebarOpen(false)}
+        />
+      ) : (
+        <button
+          className="sidebar-reopen"
+          onClick={() => setSidebarOpen(true)}
+          title="Show sidebar"
+        >
+          ☰
+        </button>
+      )}
 
       <main className="canvas">
         <div className="canvas__topbar">
@@ -149,7 +209,7 @@ export default function App() {
           <FlowCanvas
             graph={graph}
             selectedTableFull={selectedTableFull}
-            onSelectTable={setSelectedTableFull}
+            onSelectTable={selectTableInView}
           />
         </ReactFlowProvider>
       </main>
@@ -158,8 +218,8 @@ export default function App() {
         <DetailPanel
           table={selectedTable}
           schema={schema}
-          onClose={() => setSelectedTableFull(null)}
-          onJump={jumpTo}
+          onClose={closeDetail}
+          onJump={jumpToFull}
         />
       )}
     </div>

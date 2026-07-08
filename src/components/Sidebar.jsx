@@ -11,11 +11,17 @@ export default function Sidebar({
   searchResults,
   onPickTable,
   stats,
+  onCollapse,
 }) {
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">
-        <div className="sidebar__title">HMS Schema Explorer</div>
+        <div className="sidebar__brandrow">
+          <div className="sidebar__title">HMS Schema Explorer</div>
+          <button className="sidebar__collapse" onClick={onCollapse} title="Hide sidebar (full screen)">
+            «
+          </button>
+        </div>
         <div className="sidebar__sub">
           {schema.totals.tables} tables · {schema.totals.modules} modules ·{' '}
           {schema.totals.relations} relations
