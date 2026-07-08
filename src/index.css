@@ -34,7 +34,9 @@ body {
   overflow: hidden;
 }
 .app--nosidebar {
-  grid-template-columns: 0 1fr;
+  /* Sidebar is gone and the reopen button is position:fixed (out of grid flow),
+     so use a single full-width track — otherwise <main> lands in a 0-width column. */
+  grid-template-columns: 1fr;
 }
 .sidebar-reopen {
   position: fixed;
@@ -253,6 +255,10 @@ body {
   align-items: center;
   gap: 16px;
   pointer-events: none;
+}
+/* When the sidebar is hidden, shift the topbar right to clear the floating ☰ button. */
+.app--nosidebar .canvas__topbar {
+  left: 58px;
 }
 .canvas__crumb {
   pointer-events: auto;
