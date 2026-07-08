@@ -31,13 +31,21 @@ export function computeVisible(schema, selectedModule, showRelated) {
 }
 
 // Build laid-out React Flow nodes + edges for the current selection.
-export function buildGraph(schema, selectedModule, showRelated) {
+// direction is a dagre rankdir: 'LR' | 'TB' | 'RL' | 'BT' — the "rotate" control cycles it.
+export function buildGraph(schema, selectedModule, showRelated, direction = 'LR') {
   const byFull = new Map(schema.tables.map((t) => [t.fullName, t]))
   const { core, related } = computeVisible(schema, selectedModule, showRelated)
   const visible = new Set([...core, ...related])
+  const vertical = direction === 'TB' || direction === 'BT'
 
   const g = new dagre.graphlib.Graph()
-  g.setGraph({ rankdir: 'LR', nodesep: 45, ranksep: 110, marginx: 60, marginy: 60 })
+  g.setGraph({
+    rankdir: direction,
+    nodesep: 45,
+    ranksep: vertical ? 80 : 110,
+    marginx: 60,
+    marginy: 60,
+  })
   g.setDefaultEdgeLabel(() => ({}))
 
   for (const full of visible) {
@@ -61,6 +69,7 @@ export function buildGraph(schema, selectedModule, showRelated) {
         color: colorForModule(t.module),
         isCore: core.has(full),
         isRelated: related.has(full),
+        direction,
       },
     }
   })

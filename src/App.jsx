@@ -24,10 +24,21 @@ const nodeTypes = { table: TableNode }
 const DEFAULT_MODULE =
   schema.modules.find((m) => m.name === 'PAMS')?.name || schema.modules[0]?.name || 'ALL'
 
-function FlowCanvas({ graph, selectedTableFull, onSelectTable }) {
+// Each rotate click turns the layout 90°.
+const ROTATE_ORDER = ['LR', 'TB', 'RL', 'BT']
+const DIR_LABEL = { LR: 'Left → Right', TB: 'Top → Bottom', RL: 'Right → Left', BT: 'Bottom → Top' }
+
+function FlowCanvas({ graph, selectedTableFull, onSelectTable, fitSignal }) {
   const rf = useReactFlow()
   const [nodes, setNodes, onNodesChange] = useNodesState([])
   const [edges, setEdges, onEdgesChange] = useEdgesState([])
+
+  // When the sidebar shows/hides the canvas resizes — React Flow does not auto-fit
+  // on resize, so nodes would end up off-screen. Re-fit once the layout settles.
+  useEffect(() => {
+    const t = setTimeout(() => rf.fitView({ duration: 300, padding: 0.18 }), 90)
+    return () => clearTimeout(t)
+  }, [fitSignal, rf])
 
   // Reset graph when the module / related toggle changes. Fit the whole view
   // unless a specific table is targeted (the selection effect handles that).
@@ -88,6 +99,11 @@ export default function App() {
 
   const [search, setSearch] = useState('')
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [direction, setDirection] = useState('LR')
+  const rotate = useCallback(
+    () => setDirection((d) => ROTATE_ORDER[(ROTATE_ORDER.indexOf(d) + 1) % ROTATE_ORDER.length]),
+    []
+  )
 
   const byFull = useMemo(() => new Map(schema.tables.map((t) => [t.fullName, t])), [])
 
@@ -103,8 +119,8 @@ export default function App() {
   const selectedTable = selectedTableFull ? byFull.get(selectedTableFull) : null
 
   const graph = useMemo(
-    () => buildGraph(schema, selectedModule, showRelated),
-    [selectedModule, showRelated]
+    () => buildGraph(schema, selectedModule, showRelated, direction),
+    [selectedModule, showRelated, direction]
   )
 
   const searchResults = useMemo(() => {
@@ -194,6 +210,9 @@ export default function App() {
           <span className="canvas__crumb" style={{ '--mod': colorForModule(selectedModule) }}>
             {selectedModule === 'ALL' ? 'All modules' : `${selectedModule} module`}
           </span>
+          <button className="canvas__rotate" onClick={rotate} title={`Rotate — now ${DIR_LABEL[direction]}`}>
+            ⟳ Rotate
+          </button>
           <span className="canvas__legend">
             <span className="legend__item">
               <span className="legend__swatch legend__swatch--solid" /> same-module link
@@ -210,6 +229,7 @@ export default function App() {
             graph={graph}
             selectedTableFull={selectedTableFull}
             onSelectTable={selectTableInView}
+            fitSignal={sidebarOpen}
           />
         </ReactFlowProvider>
       </main>

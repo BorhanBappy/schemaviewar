@@ -264,6 +264,21 @@ body {
   font-size: 13px;
   font-weight: 600;
 }
+.canvas__rotate {
+  pointer-events: auto;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 6px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.canvas__rotate:hover {
+  background: var(--bg-elev);
+  border-color: var(--accent);
+}
 .canvas__legend {
   display: flex;
   gap: 14px;
