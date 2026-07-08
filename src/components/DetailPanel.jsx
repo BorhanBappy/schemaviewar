@@ -1,7 +1,10 @@
 import { colorForModule } from '../lib/palette'
 
-export default function DetailPanel({ table, schema, onClose, onJump }) {
+export default function DetailPanel({ table, schema, onClose, onJump, showAudit }) {
   if (!table) return null
+
+  const cols = showAudit ? table.columns : table.columns.filter((c) => !c.isAudit)
+  const hiddenAudit = table.columns.length - cols.length
 
   // Outgoing FKs = this table -> other. Incoming = other -> this table.
   const outgoing = table.relations || []
@@ -23,17 +26,26 @@ export default function DetailPanel({ table, schema, onClose, onJump }) {
       </div>
 
       <div className="detail__body">
-        <div className="detail__section">Columns ({table.columns.length})</div>
+        <div className="detail__section">
+          Columns ({cols.length}
+          {hiddenAudit > 0 ? ` · ${hiddenAudit} audit hidden` : ''})
+        </div>
         <table className="coltable">
           <tbody>
-            {table.columns.map((c) => (
+            {cols.map((c) => (
               <tr key={c.name} className={c.isPK ? 'is-pk' : ''}>
                 <td className="coltable__k">{c.isPK ? '🔑' : c.isFK ? '🔗' : ''}</td>
                 <td className="coltable__name">{c.name}</td>
                 <td className="coltable__type">
-                  {c.clrType.replace('?', '')}
-                  {c.nullable ? '?' : ''}
-                  {c.maxLength ? ` (${c.maxLength})` : ''}
+                  {c.enumType ? (
+                    <span className="coltable__enum">({c.enumType})</span>
+                  ) : (
+                    <>
+                      {c.clrType.replace('?', '')}
+                      {c.nullable ? '?' : ''}
+                      {c.maxLength ? ` (${c.maxLength})` : ''}
+                    </>
+                  )}
                 </td>
               </tr>
             ))}

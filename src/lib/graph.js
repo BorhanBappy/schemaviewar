@@ -6,7 +6,11 @@ const HEADER_H = 50
 const ROW_H = 22
 const MAX_NODE_H = 470
 
-const nodeHeight = (t) => Math.min(HEADER_H + t.columns.length * ROW_H + 8, MAX_NODE_H)
+const visibleColCount = (t, showAudit) =>
+  showAudit ? t.columns.length : t.columns.filter((c) => !c.isAudit).length
+
+const nodeHeight = (t, showAudit) =>
+  Math.min(HEADER_H + visibleColCount(t, showAudit) * ROW_H + 8, MAX_NODE_H)
 
 // Which tables are shown for the current module selection.
 //   core    = tables that belong to the selected module
@@ -32,7 +36,7 @@ export function computeVisible(schema, selectedModule, showRelated) {
 
 // Build laid-out React Flow nodes + edges for the current selection.
 // direction is a dagre rankdir: 'LR' | 'TB' | 'RL' | 'BT' — the "rotate" control cycles it.
-export function buildGraph(schema, selectedModule, showRelated, direction = 'LR') {
+export function buildGraph(schema, selectedModule, showRelated, direction = 'LR', showAudit = false) {
   const byFull = new Map(schema.tables.map((t) => [t.fullName, t]))
   const { core, related } = computeVisible(schema, selectedModule, showRelated)
   const visible = new Set([...core, ...related])
@@ -50,7 +54,7 @@ export function buildGraph(schema, selectedModule, showRelated, direction = 'LR'
 
   for (const full of visible) {
     const t = byFull.get(full)
-    g.setNode(full, { width: NODE_WIDTH, height: nodeHeight(t) })
+    g.setNode(full, { width: NODE_WIDTH, height: nodeHeight(t, showAudit) })
   }
   const edgeList = schema.edges.filter((e) => visible.has(e.fromFull) && visible.has(e.toFull))
   for (const e of edgeList) g.setEdge(e.fromFull, e.toFull)
@@ -63,13 +67,14 @@ export function buildGraph(schema, selectedModule, showRelated, direction = 'LR'
     return {
       id: full,
       type: 'table',
-      position: { x: pos.x - NODE_WIDTH / 2, y: pos.y - nodeHeight(t) / 2 },
+      position: { x: pos.x - NODE_WIDTH / 2, y: pos.y - nodeHeight(t, showAudit) / 2 },
       data: {
         table: t,
         color: colorForModule(t.module),
         isCore: core.has(full),
         isRelated: related.has(full),
         direction,
+        showAudit,
       },
     }
   })

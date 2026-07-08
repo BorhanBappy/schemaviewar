@@ -11,8 +11,10 @@ const HANDLES = {
 }
 
 export default function TableNode({ data, selected }) {
-  const { table, color, isRelated } = data
+  const { table, color, isRelated, showAudit } = data
   const h = HANDLES[data.direction] || HANDLES.LR
+  const cols = showAudit ? table.columns : table.columns.filter((c) => !c.isAudit)
+  const hiddenAudit = table.columns.length - cols.length
   return (
     <div
       className={`tnode${isRelated ? ' tnode--related' : ''}${selected ? ' tnode--selected' : ''}`}
@@ -27,17 +29,24 @@ export default function TableNode({ data, selected }) {
       </div>
       {table.table && <div className="tnode__phys">{table.table}</div>}
       <div className="tnode__cols">
-        {table.columns.map((c) => (
+        {cols.map((c) => (
           <div className={`tcol${c.isPK ? ' tcol--pk' : ''}`} key={c.name}>
             <span className="tcol__badge">{c.isPK ? '🔑' : c.isFK ? '🔗' : ''}</span>
             <span className="tcol__name">{c.name}</span>
-            <span className="tcol__type">
-              {prettyType(c)}
-              {c.nullable ? '?' : ''}
+            <span className="tcol__type" title={c.enumType || undefined}>
+              {c.enumType ? (
+                <span className="tcol__enum">({c.enumType})</span>
+              ) : (
+                <>
+                  {prettyType(c)}
+                  {c.nullable ? '?' : ''}
+                </>
+              )}
             </span>
           </div>
         ))}
-        {table.columns.length === 0 && <div className="tcol tcol--empty">no columns parsed</div>}
+        {cols.length === 0 && <div className="tcol tcol--empty">no columns</div>}
+        {hiddenAudit > 0 && <div className="tcol tcol--audit">+{hiddenAudit} audit fields</div>}
       </div>
       <Handle type="source" position={h.source} className="thandle" />
     </div>

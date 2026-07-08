@@ -99,6 +99,7 @@ export default function App() {
 
   const [search, setSearch] = useState('')
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const [showAudit, setShowAudit] = useState(false)
   const [direction, setDirection] = useState('LR')
   const rotate = useCallback(
     () => setDirection((d) => ROTATE_ORDER[(ROTATE_ORDER.indexOf(d) + 1) % ROTATE_ORDER.length]),
@@ -119,8 +120,8 @@ export default function App() {
   const selectedTable = selectedTableFull ? byFull.get(selectedTableFull) : null
 
   const graph = useMemo(
-    () => buildGraph(schema, selectedModule, showRelated, direction),
-    [selectedModule, showRelated, direction]
+    () => buildGraph(schema, selectedModule, showRelated, direction, showAudit),
+    [selectedModule, showRelated, direction, showAudit]
   )
 
   const searchResults = useMemo(() => {
@@ -194,6 +195,8 @@ export default function App() {
           onPickTable={jumpToTable}
           stats={graph.stats}
           onCollapse={() => setSidebarOpen(false)}
+          showAudit={showAudit}
+          onToggleAudit={() => setShowAudit((v) => !v)}
         />
       ) : (
         <button
@@ -240,6 +243,7 @@ export default function App() {
           schema={schema}
           onClose={closeDetail}
           onJump={jumpToFull}
+          showAudit={showAudit}
         />
       )}
     </div>

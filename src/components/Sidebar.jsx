@@ -12,6 +12,8 @@ export default function Sidebar({
   onPickTable,
   stats,
   onCollapse,
+  showAudit,
+  onToggleAudit,
 }) {
   return (
     <aside className="sidebar">
@@ -56,6 +58,10 @@ export default function Sidebar({
       <label className="sidebar__toggle">
         <input type="checkbox" checked={showRelated} onChange={onToggleRelated} />
         Show related tables (other modules)
+      </label>
+      <label className="sidebar__toggle">
+        <input type="checkbox" checked={showAudit} onChange={onToggleAudit} />
+        Show audit fields (Created, IsActive…)
       </label>
 
       <div className="sidebar__section">Modules</div>

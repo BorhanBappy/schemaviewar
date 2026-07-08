@@ -8,7 +8,7 @@
 //
 // Re-run whenever the schema changes (after a new migration) to regenerate the JSON.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve } from 'node:path'
 
@@ -33,6 +33,46 @@ if (!existsSync(snapshotPath)) {
 }
 
 const src = readFileSync(snapshotPath, 'utf8')
+
+// Base-class columns shared by (almost) every entity — flagged so the viewer can
+// hide them. Id is the PK and stays visible; the rest are audit noise.
+//   Entity: Id, IsActive, IsDeleted   AuditableEntity: Created/By, LastModified/By
+const AUDIT_FIELDS = new Set([
+  'Created',
+  'CreatedBy',
+  'LastModified',
+  'LastModifiedBy',
+  'IsActive',
+  'IsDeleted',
+])
+
+// ---- Enum enrichment ---------------------------------------------------------
+// EF stores enums as plain int columns, so the snapshot loses the enum name.
+// Recover it by scanning the entity .cs source for `public EnumXxx PropName`.
+// Map key: `ClassName.PropName` -> `EnumXxx`.
+const enumMap = new Map()
+const repoMarker = snapshotPath.indexOf('HMS.Repository')
+const entitiesDir = repoMarker > 0 ? resolve(snapshotPath.slice(0, repoMarker), 'HMS.Entities') : null
+
+if (entitiesDir && existsSync(entitiesDir)) {
+  const classRe = /\bclass\s+([A-Za-z0-9_]+)/
+  const enumPropRe = /public\s+(?:virtual\s+|required\s+)?(Enum[A-Za-z0-9_]+)\s*\??\s+([A-Za-z0-9_]+)\s*\{\s*get/
+  const entries = readdirSync(entitiesDir, { recursive: true, withFileTypes: true })
+  for (const d of entries) {
+    if (!d.isFile() || !d.name.endsWith('.cs')) continue
+    const text = readFileSync(resolve(d.parentPath || d.path || entitiesDir, d.name), 'utf8')
+    let currentClass = null
+    for (const line of text.split('\n')) {
+      const cm = line.match(classRe)
+      if (cm) currentClass = cm[1]
+      const pm = line.match(enumPropRe)
+      if (pm && currentClass) enumMap.set(`${currentClass}.${pm[2]}`, pm[1])
+    }
+  }
+  console.log(`  (enum enrichment: ${enumMap.size} enum columns found in ${entitiesDir})`)
+} else {
+  console.warn('  (enum enrichment skipped — HMS.Entities dir not found)')
+}
 
 // ---- Split the file into entity blocks ---------------------------------------
 // Every entity is declared TWICE in a snapshot: first with its Property/Key/Table
@@ -111,6 +151,8 @@ for (let i = 0; i < headers.length; i++) {
       nullable,
       isPK: false,
       isFK: false,
+      isAudit: AUDIT_FIELDS.has(colName),
+      enumType: enumMap.get(`${ent.name}.${colName}`) || null,
       maxLength: maxLen ? Number(maxLen) : null,
     }
     ent.columns.push(col)

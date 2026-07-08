@@ -396,6 +396,18 @@ body {
   font-style: italic;
   grid-template-columns: 1fr;
 }
+.tcol--audit {
+  color: var(--text-faint);
+  font-style: italic;
+  font-size: 10px;
+  grid-template-columns: 1fr;
+}
+.tcol__enum {
+  color: #c084fc;
+}
+.coltable__enum {
+  color: #c084fc;
+}
 .thandle {
   opacity: 0;
 }
