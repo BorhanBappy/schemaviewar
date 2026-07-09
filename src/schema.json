@@ -1,9 +1,9 @@
 {
   "generatedFrom": "d:/Encoders/HMS/HMS.Repository/Migrations/ApplicationDbContextModelSnapshot.cs",
   "totals": {
-    "tables": 272,
+    "tables": 283,
     "modules": 16,
-    "relations": 508
+    "relations": 513
   },
   "modules": [
     {
@@ -28,7 +28,7 @@
     },
     {
       "name": "HRM",
-      "tableCount": 2
+      "tableCount": 14
     },
     {
       "name": "LIS",
@@ -40,7 +40,7 @@
     },
     {
       "name": "PAMS",
-      "tableCount": 27
+      "tableCount": 26
     },
     {
       "name": "PCARE",
@@ -4735,17 +4735,6 @@
           "maxLength": null
         },
         {
-          "name": "BedDefinitionId",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
           "name": "Created",
           "clrType": "DateTime",
           "sqlType": "datetime2",
@@ -4905,15 +4894,6 @@
       ],
       "relations": [
         {
-          "toFull": "HMS.Entities.Areas.PAMS.BedDefinition",
-          "toName": "BedDefinition",
-          "toModule": "PAMS",
-          "columns": [
-            "BedDefinitionId"
-          ],
-          "nav": "BedDefinition"
-        },
-        {
           "toFull": "HMS.Entities.Areas.FACILITY.RoomUnit",
           "toName": "RoomUnit",
           "toModule": "FACILITY",
@@ -4948,257 +4928,6 @@
             "WardId"
           ],
           "nav": "Ward"
-        }
-      ]
-    },
-    {
-      "fullName": "HMS.Entities.Areas.PAMS.BedDefinition",
-      "name": "BedDefinition",
-      "module": "PAMS",
-      "table": "pams_bed_definitions",
-      "columns": [
-        {
-          "name": "Id",
-          "clrType": "Guid",
-          "sqlType": "uniqueidentifier",
-          "nullable": false,
-          "isPK": true,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "BedCategory",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "BedClass",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "BedGender",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "BedNumber",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "BedStatus",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "BedType",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "Created",
-          "clrType": "DateTime",
-          "sqlType": "datetime2",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "CreatedBy",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "DailyCharge",
-          "clrType": "decimal?",
-          "sqlType": "decimal(18,2)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "Department",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "DepartmentId",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "IsActive",
-          "clrType": "bool",
-          "sqlType": "bit",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "IsDeleted",
-          "clrType": "bool",
-          "sqlType": "bit",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "IsolationCapable",
-          "clrType": "bool",
-          "sqlType": "bit",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "LastModified",
-          "clrType": "DateTime?",
-          "sqlType": "datetime2",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "LastModifiedBy",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "RoomUnitId",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "ServiceCenter",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "Unit",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        }
-      ],
-      "pk": [
-        "Id"
-      ],
-      "relations": [
-        {
-          "toFull": "HMS.Entities.Areas.ACARE.Department",
-          "toName": "Department",
-          "toModule": "ACARE",
-          "columns": [
-            "DepartmentId"
-          ],
-          "nav": "DepartmentRef"
-        },
-        {
-          "toFull": "HMS.Entities.Areas.FACILITY.RoomUnit",
-          "toName": "RoomUnit",
-          "toModule": "FACILITY",
-          "columns": [
-            "RoomUnitId"
-          ],
-          "nav": "RoomUnit"
         }
       ]
     },
@@ -12899,277 +12628,6 @@
       "relations": []
     },
     {
-      "fullName": "HMS.Entities.Areas.HRM.DutyChangeRequest",
-      "name": "DutyChangeRequest",
-      "module": "HRM",
-      "table": "hrm_duty_requests",
-      "columns": [
-        {
-          "name": "Id",
-          "clrType": "Guid",
-          "sqlType": "uniqueidentifier",
-          "nullable": false,
-          "isPK": true,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "CoverStaffId",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "CoverStaffType",
-          "clrType": "int?",
-          "sqlType": "int",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": "EnumDutyStaffType",
-          "maxLength": null
-        },
-        {
-          "name": "Created",
-          "clrType": "DateTime",
-          "sqlType": "datetime2",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "CreatedBy",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "DecidedAt",
-          "clrType": "DateTime?",
-          "sqlType": "datetime2",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "DecidedBy",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "EndDate",
-          "clrType": "DateTime?",
-          "sqlType": "datetime2",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "IsActive",
-          "clrType": "bool",
-          "sqlType": "bit",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "IsDeleted",
-          "clrType": "bool",
-          "sqlType": "bit",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "LastModified",
-          "clrType": "DateTime?",
-          "sqlType": "datetime2",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "LastModifiedBy",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": true,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "Reason",
-          "clrType": "string",
-          "sqlType": "nvarchar(500)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": 500
-        },
-        {
-          "name": "RequestType",
-          "clrType": "int",
-          "sqlType": "int",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": "EnumDutyRequestType",
-          "maxLength": null
-        },
-        {
-          "name": "ResultRosterId",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "RoomId",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "ShiftId",
-          "clrType": "Guid?",
-          "sqlType": "uniqueidentifier",
-          "nullable": true,
-          "isPK": false,
-          "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "StaffId",
-          "clrType": "Guid",
-          "sqlType": "uniqueidentifier",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "StaffType",
-          "clrType": "int",
-          "sqlType": "int",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": "EnumDutyStaffType",
-          "maxLength": null
-        },
-        {
-          "name": "StartDate",
-          "clrType": "DateTime",
-          "sqlType": "datetime2",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "Status",
-          "clrType": "int",
-          "sqlType": "int",
-          "nullable": false,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": "EnumDutyRequestStatus",
-          "maxLength": null
-        }
-      ],
-      "pk": [
-        "Id"
-      ],
-      "relations": [
-        {
-          "toFull": "HMS.Entities.Areas.HRM.DutyRoster",
-          "toName": "DutyRoster",
-          "toModule": "HRM",
-          "columns": [
-            "ResultRosterId"
-          ],
-          "nav": "ResultRoster"
-        },
-        {
-          "toFull": "HMS.Entities.Areas.FACILITY.Room",
-          "toName": "Room",
-          "toModule": "FACILITY",
-          "columns": [
-            "RoomId"
-          ],
-          "nav": "Room"
-        },
-        {
-          "toFull": "HMS.Entities.Shift",
-          "toName": "Shift",
-          "toModule": "SYSTEM",
-          "columns": [
-            "ShiftId"
-          ],
-          "nav": "Shift"
-        }
-      ]
-    },
-    {
       "fullName": "HMS.Entities.Areas.HRM.DutyRoster",
       "name": "DutyRoster",
       "module": "HRM",
@@ -19591,6 +19049,2470 @@
             "DistrictId"
           ],
           "nav": "District"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmAppraisal",
+      "name": "HrmAppraisal",
+      "module": "HRM",
+      "table": "hrm_appraisals",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Cycle",
+          "clrType": "string",
+          "sqlType": "nvarchar(60)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 60
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "FinalRating",
+          "clrType": "decimal?",
+          "sqlType": "decimal(18,2)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsFinalized",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ManagerRating",
+          "clrType": "decimal?",
+          "sqlType": "decimal(18,2)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Outcome",
+          "clrType": "string",
+          "sqlType": "nvarchar(120)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 120
+        },
+        {
+          "name": "SelfRating",
+          "clrType": "decimal?",
+          "sqlType": "decimal(18,2)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmAttendance",
+      "name": "HrmAttendance",
+      "module": "HRM",
+      "table": "hrm_attendances",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Date",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "InTime",
+          "clrType": "TimeSpan?",
+          "sqlType": "time",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsLate",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "OutTime",
+          "clrType": "TimeSpan?",
+          "sqlType": "time",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Remarks",
+          "clrType": "string",
+          "sqlType": "nvarchar(250)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 250
+        },
+        {
+          "name": "Status",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": "EnumAttendanceStatus",
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmDoctorFee",
+      "name": "HrmDoctorFee",
+      "module": "HRM",
+      "table": "hrm_doctor_fees",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Amount",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "DoctorId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "DoctorName",
+          "clrType": "string",
+          "sqlType": "nvarchar(150)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 150
+        },
+        {
+          "name": "DoctorSharePct",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EffectiveFrom",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EffectiveTo",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ServiceType",
+          "clrType": "string",
+          "sqlType": "nvarchar(100)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 100
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": []
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmExit",
+      "name": "HrmExit",
+      "module": "HRM",
+      "table": "hrm_exits",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "AssetCleared",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Bonus",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ElEncashment",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "FinanceCleared",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Gratuity",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsSettled",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ItCleared",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastWorkingDay",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "MedicalCleared",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "NetPayable",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "PfBalance",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ProRataSalary",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Reason",
+          "clrType": "string",
+          "sqlType": "nvarchar(300)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 300
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmHonoraria",
+      "name": "HrmHonoraria",
+      "module": "HRM",
+      "table": "hrm_honorarias",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "DoctorId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "DoctorName",
+          "clrType": "string",
+          "sqlType": "nvarchar(150)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 150
+        },
+        {
+          "name": "GrossShare",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsPaid",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "NetPayable",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Quarter",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "TdsAmount",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Year",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": []
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmLeaveApplication",
+      "name": "HrmLeaveApplication",
+      "module": "HRM",
+      "table": "hrm_leave_applications",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Days",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "DecidedAt",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "DecidedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "DecisionNote",
+          "clrType": "string",
+          "sqlType": "nvarchar(500)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 500
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "FromDate",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LeaveTypeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Reason",
+          "clrType": "string",
+          "sqlType": "nvarchar(500)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 500
+        },
+        {
+          "name": "Status",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": "EnumLeaveApplicationStatus",
+          "maxLength": null
+        },
+        {
+          "name": "ToDate",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        },
+        {
+          "toFull": "HMS.Entities.Areas.HRM.HrmLeaveType",
+          "toName": "HrmLeaveType",
+          "toModule": "HRM",
+          "columns": [
+            "LeaveTypeId"
+          ],
+          "nav": "LeaveType"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmLeaveType",
+      "name": "HrmLeaveType",
+      "module": "HRM",
+      "table": "hrm_leave_types",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "AnnualDays",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CarryForward",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Code",
+          "clrType": "string",
+          "sqlType": "nvarchar(20)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 20
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "GenderRestriction",
+          "clrType": "string",
+          "sqlType": "nvarchar(10)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 10
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsPaid",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Kind",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": "EnumLeaveKind",
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Name",
+          "clrType": "string",
+          "sqlType": "nvarchar(100)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 100
+        },
+        {
+          "name": "RequiresApproval",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": []
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmLicense",
+      "name": "HrmLicense",
+      "module": "HRM",
+      "table": "hrm_licenses",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ExpiryDate",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IssueDate",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LicenseNo",
+          "clrType": "string",
+          "sqlType": "nvarchar(60)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 60
+        },
+        {
+          "name": "LicenseType",
+          "clrType": "string",
+          "sqlType": "nvarchar(20)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 20
+        },
+        {
+          "name": "Notes",
+          "clrType": "string",
+          "sqlType": "nvarchar(300)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 300
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmOnboarding",
+      "name": "HrmOnboarding",
+      "module": "HRM",
+      "table": "hrm_onboardings",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CandidateName",
+          "clrType": "string",
+          "sqlType": "nvarchar(150)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 150
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Designation",
+          "clrType": "string",
+          "sqlType": "nvarchar(120)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 120
+        },
+        {
+          "name": "DocsVerified",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "HrTasksDone",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsCompleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ItAccessDone",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "JoiningDate",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Notes",
+          "clrType": "string",
+          "sqlType": "nvarchar(500)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 500
+        },
+        {
+          "name": "OrientationDone",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmPayrollRun",
+      "name": "HrmPayrollRun",
+      "module": "HRM",
+      "table": "hrm_payroll_runs",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CurrentStep",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsClosed",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Month",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "StepName",
+          "clrType": "string",
+          "sqlType": "nvarchar(60)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": 60
+        },
+        {
+          "name": "TotalDeductions",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "TotalGross",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "TotalNet",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Year",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": []
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmPayslip",
+      "name": "HrmPayslip",
+      "module": "HRM",
+      "table": "hrm_payslips",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Basic",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "BeftnRef",
+          "clrType": "string",
+          "sqlType": "nvarchar(max)",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Conveyance",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "GrossPay",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Hra",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Medical",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "NetPay",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "OtherAllowance",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "OtherDeduction",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "PayrollRunId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "ProvidentFund",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Tds",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        },
+        {
+          "toFull": "HMS.Entities.Areas.HRM.HrmPayrollRun",
+          "toName": "HrmPayrollRun",
+          "toModule": "HRM",
+          "columns": [
+            "PayrollRunId"
+          ],
+          "nav": "PayrollRun"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmPfGratuity",
+      "name": "HrmPfGratuity",
+      "module": "HRM",
+      "table": "hrm_pf_gratuities",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "AsOfDate",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "GratuityProvision",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "PfBalance",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "PfEmployee",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "PfEmployer",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
+        }
+      ]
+    },
+    {
+      "fullName": "HMS.Entities.Areas.HRM.HrmTdsLine",
+      "name": "HrmTdsLine",
+      "module": "HRM",
+      "table": "hrm_tds_lines",
+      "columns": [
+        {
+          "name": "Id",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": true,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Created",
+          "clrType": "DateTime",
+          "sqlType": "datetime2",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "CreatedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "EmployeeId",
+          "clrType": "Guid",
+          "sqlType": "uniqueidentifier",
+          "nullable": false,
+          "isPK": false,
+          "isFK": true,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsActive",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "IsDeleted",
+          "clrType": "bool",
+          "sqlType": "bit",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModified",
+          "clrType": "DateTime?",
+          "sqlType": "datetime2",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "LastModifiedBy",
+          "clrType": "Guid?",
+          "sqlType": "uniqueidentifier",
+          "nullable": true,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": true,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Month",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "TaxableIncome",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "TdsAmount",
+          "clrType": "decimal",
+          "sqlType": "decimal(18,2)",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        },
+        {
+          "name": "Year",
+          "clrType": "int",
+          "sqlType": "int",
+          "nullable": false,
+          "isPK": false,
+          "isFK": false,
+          "isAudit": false,
+          "enumType": null,
+          "maxLength": null
+        }
+      ],
+      "pk": [
+        "Id"
+      ],
+      "relations": [
+        {
+          "toFull": "HMS.Entities.Employee",
+          "toName": "Employee",
+          "toModule": "SYSTEM",
+          "columns": [
+            "EmployeeId"
+          ],
+          "nav": "Employee"
         }
       ]
     },
@@ -33397,17 +35319,6 @@
           "maxLength": null
         },
         {
-          "name": "AdmissionType",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
           "name": "AdmissionTypeId",
           "clrType": "Guid?",
           "sqlType": "uniqueidentifier",
@@ -33474,17 +35385,6 @@
           "maxLength": null
         },
         {
-          "name": "Department",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
           "name": "DepartmentId",
           "clrType": "Guid?",
           "sqlType": "uniqueidentifier",
@@ -33507,34 +35407,12 @@
           "maxLength": null
         },
         {
-          "name": "Doctor",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
           "name": "DoctorId",
           "clrType": "Guid?",
           "sqlType": "uniqueidentifier",
           "nullable": true,
           "isPK": false,
           "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "Email",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
           "isAudit": false,
           "enumType": null,
           "maxLength": null
@@ -33595,34 +35473,12 @@
           "maxLength": null
         },
         {
-          "name": "Mobile",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
           "name": "PatientId",
           "clrType": "Guid?",
           "sqlType": "uniqueidentifier",
           "nullable": true,
           "isPK": false,
           "isFK": true,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "PatientName",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
           "isAudit": false,
           "enumType": null,
           "maxLength": null
@@ -33673,17 +35529,6 @@
         },
         {
           "name": "Remarks",
-          "clrType": "string",
-          "sqlType": "nvarchar(max)",
-          "nullable": true,
-          "isPK": false,
-          "isFK": false,
-          "isAudit": false,
-          "enumType": null,
-          "maxLength": null
-        },
-        {
-          "name": "RequestStatus",
           "clrType": "string",
           "sqlType": "nvarchar(max)",
           "nullable": true,
@@ -54569,42 +56414,6 @@
       ]
     },
     {
-      "id": "HMS.Entities.Areas.HRM.DutyChangeRequest->HMS.Entities.Areas.HRM.DutyRoster#0",
-      "fromFull": "HMS.Entities.Areas.HRM.DutyChangeRequest",
-      "from": "DutyChangeRequest",
-      "fromModule": "HRM",
-      "toFull": "HMS.Entities.Areas.HRM.DutyRoster",
-      "to": "DutyRoster",
-      "toModule": "HRM",
-      "columns": [
-        "ResultRosterId"
-      ]
-    },
-    {
-      "id": "HMS.Entities.Areas.HRM.DutyChangeRequest->HMS.Entities.Areas.FACILITY.Room#1",
-      "fromFull": "HMS.Entities.Areas.HRM.DutyChangeRequest",
-      "from": "DutyChangeRequest",
-      "fromModule": "HRM",
-      "toFull": "HMS.Entities.Areas.FACILITY.Room",
-      "to": "Room",
-      "toModule": "FACILITY",
-      "columns": [
-        "RoomId"
-      ]
-    },
-    {
-      "id": "HMS.Entities.Areas.HRM.DutyChangeRequest->HMS.Entities.Shift#2",
-      "fromFull": "HMS.Entities.Areas.HRM.DutyChangeRequest",
-      "from": "DutyChangeRequest",
-      "fromModule": "HRM",
-      "toFull": "HMS.Entities.Shift",
-      "to": "Shift",
-      "toModule": "SYSTEM",
-      "columns": [
-        "ShiftId"
-      ]
-    },
-    {
       "id": "HMS.Entities.Areas.HRM.DutyRoster->HMS.Entities.Areas.FACILITY.Room#0",
       "fromFull": "HMS.Entities.Areas.HRM.DutyRoster",
       "from": "DutyRoster",
@@ -54650,6 +56459,138 @@
       "toModule": "FACILITY",
       "columns": [
         "WardId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmAppraisal->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmAppraisal",
+      "from": "HrmAppraisal",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmAttendance->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmAttendance",
+      "from": "HrmAttendance",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmExit->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmExit",
+      "from": "HrmExit",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmLeaveApplication->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmLeaveApplication",
+      "from": "HrmLeaveApplication",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmLeaveApplication->HMS.Entities.Areas.HRM.HrmLeaveType#1",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmLeaveApplication",
+      "from": "HrmLeaveApplication",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Areas.HRM.HrmLeaveType",
+      "to": "HrmLeaveType",
+      "toModule": "HRM",
+      "columns": [
+        "LeaveTypeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmLicense->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmLicense",
+      "from": "HrmLicense",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmOnboarding->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmOnboarding",
+      "from": "HrmOnboarding",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmPayslip->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmPayslip",
+      "from": "HrmPayslip",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmPayslip->HMS.Entities.Areas.HRM.HrmPayrollRun#1",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmPayslip",
+      "from": "HrmPayslip",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Areas.HRM.HrmPayrollRun",
+      "to": "HrmPayrollRun",
+      "toModule": "HRM",
+      "columns": [
+        "PayrollRunId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmPfGratuity->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmPfGratuity",
+      "from": "HrmPfGratuity",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
+      ]
+    },
+    {
+      "id": "HMS.Entities.Areas.HRM.HrmTdsLine->HMS.Entities.Employee#0",
+      "fromFull": "HMS.Entities.Areas.HRM.HrmTdsLine",
+      "from": "HrmTdsLine",
+      "fromModule": "HRM",
+      "toFull": "HMS.Entities.Employee",
+      "to": "Employee",
+      "toModule": "SYSTEM",
+      "columns": [
+        "EmployeeId"
       ]
     },
     {
@@ -55397,19 +57338,7 @@
       ]
     },
     {
-      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.PAMS.BedDefinition#0",
-      "fromFull": "HMS.Entities.Areas.PAMS.BedAllocation",
-      "from": "BedAllocation",
-      "fromModule": "PAMS",
-      "toFull": "HMS.Entities.Areas.PAMS.BedDefinition",
-      "to": "BedDefinition",
-      "toModule": "PAMS",
-      "columns": [
-        "BedDefinitionId"
-      ]
-    },
-    {
-      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.FACILITY.RoomUnit#1",
+      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.FACILITY.RoomUnit#0",
       "fromFull": "HMS.Entities.Areas.PAMS.BedAllocation",
       "from": "BedAllocation",
       "fromModule": "PAMS",
@@ -55421,7 +57350,7 @@
       ]
     },
     {
-      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.PCARE.PatientAdmission#2",
+      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.PCARE.PatientAdmission#1",
       "fromFull": "HMS.Entities.Areas.PAMS.BedAllocation",
       "from": "BedAllocation",
       "fromModule": "PAMS",
@@ -55433,7 +57362,7 @@
       ]
     },
     {
-      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.FACILITY.RoomUnit#3",
+      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.FACILITY.RoomUnit#2",
       "fromFull": "HMS.Entities.Areas.PAMS.BedAllocation",
       "from": "BedAllocation",
       "fromModule": "PAMS",
@@ -55445,7 +57374,7 @@
       ]
     },
     {
-      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.FACILITY.Ward#4",
+      "id": "HMS.Entities.Areas.PAMS.BedAllocation->HMS.Entities.Areas.FACILITY.Ward#3",
       "fromFull": "HMS.Entities.Areas.PAMS.BedAllocation",
       "from": "BedAllocation",
       "fromModule": "PAMS",
@@ -55454,30 +57383,6 @@
       "toModule": "FACILITY",
       "columns": [
         "WardId"
-      ]
-    },
-    {
-      "id": "HMS.Entities.Areas.PAMS.BedDefinition->HMS.Entities.Areas.ACARE.Department#0",
-      "fromFull": "HMS.Entities.Areas.PAMS.BedDefinition",
-      "from": "BedDefinition",
-      "fromModule": "PAMS",
-      "toFull": "HMS.Entities.Areas.ACARE.Department",
-      "to": "Department",
-      "toModule": "ACARE",
-      "columns": [
-        "DepartmentId"
-      ]
-    },
-    {
-      "id": "HMS.Entities.Areas.PAMS.BedDefinition->HMS.Entities.Areas.FACILITY.RoomUnit#1",
-      "fromFull": "HMS.Entities.Areas.PAMS.BedDefinition",
-      "from": "BedDefinition",
-      "fromModule": "PAMS",
-      "toFull": "HMS.Entities.Areas.FACILITY.RoomUnit",
-      "to": "RoomUnit",
-      "toModule": "FACILITY",
-      "columns": [
-        "RoomUnitId"
       ]
     },
     {
